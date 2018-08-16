@@ -1,2 +1,8 @@
 *.tar
 *.class
+.classpath
+.project
+.settings
+*.bat
+
+/target/
