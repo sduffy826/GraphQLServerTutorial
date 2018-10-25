@@ -16,9 +16,8 @@ public class Query implements GraphQLRootResolver {
   	if (debugIt) System.out.println("in Query-constructor");
   }
 
-  public List<Link> allLinks() {
+  public List<Link> allLinks(LinkFilter filter, Number skip, Number first) {
     if (debugIt) System.out.println("in Query-allLinks()");
-  	return linkRepository.getAllLinks();
+  	return linkRepository.getAllLinks(filter, skip.intValue(), first.intValue());
   }
-
 }

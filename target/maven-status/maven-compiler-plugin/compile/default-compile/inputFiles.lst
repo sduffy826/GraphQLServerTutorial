@@ -1,4 +1,5 @@
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\GraphQLEndpoint.java
+C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\LinkFilter.java
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\Link.java
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\VoteResolver.java
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\Scalars.java
@@ -14,4 +15,5 @@ C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hac
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\User.java
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\LinkResolver.java
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\DebugFlag.java
+C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\SanitizedError.java
 C:\seanduff\workspace\hackernews-graphql-java\src\main\java\com\howtographql\hackernews\VoteRepository.java

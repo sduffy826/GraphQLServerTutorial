@@ -65,4 +65,12 @@ public class GraphQLEndpoint extends SimpleGraphQLServlet {
                                      (user == null ? "null" : user.toString()));
     return new AuthContext(user, request, response);
   }
+  
+  @Override
+  protected List<GraphQLError> filterGraphQLErrors(List<GraphQLError> errors) {
+    return errors.stream()
+                .filter(e -> e instanceof ExceptionWhileDataFetching || super.isClientError(e))
+                .map(e -> e instanceof ExceptionWhileDataFetching ? new SanitizedError((ExceptionWhileDataFetching) e) : e)
+                .collect(Collectors.toList());
+  }
 }

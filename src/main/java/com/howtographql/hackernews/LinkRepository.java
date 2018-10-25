@@ -34,10 +34,12 @@ public class LinkRepository {
     return link(doc);
   }
 
-  public List<Link> getAllLinks() {
+  public List<Link> getAllLinks(LinkFilter filter, int skip, int first) {
+    Optional<Bson> mongoFilter = Optional.ofNullable(filter).map(this::buildFilter);
     
     List<Link> allLinks = new ArrayList<>();
-    for (Document doc : links.find()) {
+    FindIterable<Document> documents = mongoFilter.map(links::find).orElseGet(links::find);
+    for (Document doc : documents.skip(skip).limit(first)) {
       allLinks.add(link(doc));
     }
     if (debugIt) System.out.println("LinkRepository-getAllLinks(), size: " + Integer.toString(allLinks.size()));
@@ -60,4 +62,23 @@ public class LinkRepository {
        doc.getString("description"),
        doc.getString("postedBy"));
   }
+  
+  private Bson buildFilter(LinkFilter filter) {
+    String descriptionPattern = filter.getDescriptionContains();
+    String urlPattern = filter.getUrlContains();
+    Bson descriptionCondition = null;
+    Bson urlCondition = null;
+    if (descriptionPattern != null && !descriptionPattern.isEmpty()) {
+      descriptionCondition = regex("description", ".*" + descriptionPattern + ".*", "i");
+    }
+    if (urlPattern != null && !urlPattern.isEmpty()) {
+      urlCondition = regex("url", ".*" + urlPattern + ".*", "i");
+    }
+    if (descriptionCondition != null && urlCondition != null) {
+      return and(descriptionCondition, urlCondition);
+    }
+    return descriptionCondition != null ? descriptionCondition : urlCondition;
+  }
+  
+  
 }
